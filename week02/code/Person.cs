@@ -9,6 +9,11 @@ public class Person
         Turns = turns;
     }
 
+    // public void useTurn()
+    // {
+    //     Turns
+    // }
+
     public override string ToString()
     {
         return Turns <= 0 ? $"({Name}:Forever)" : $"({Name}:{Turns})";

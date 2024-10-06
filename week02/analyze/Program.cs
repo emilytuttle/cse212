@@ -37,3 +37,33 @@ try {
 catch (ApplicationException e) {
     Console.WriteLine(e.Message);
 }
+
+Console.WriteLine("in order");
+try {
+    MysteryStack2.Run("3 4 5 6 * +");
+    Console.WriteLine("WRONG: expected ApplicationException: Invalid Case 4!");
+}
+catch (ApplicationException e) {
+    Console.WriteLine(e.Message);
+}
+try {
+    MysteryStack2.Run("3 4 5 * + ");
+    Console.WriteLine("WRONG: expected ApplicationException: Invalid Case 4!");
+}
+catch (ApplicationException e) {
+    Console.WriteLine(e.Message);
+}
+try {
+    MysteryStack2.Run("3 4 * +");
+    Console.WriteLine("WRONG: expected ApplicationException: Invalid Case 4!");
+}
+catch (ApplicationException e) {
+    Console.WriteLine(e.Message);
+}
+try {
+    MysteryStack2.Run("3 4 * ^");
+    Console.WriteLine("WRONG: expected ApplicationException: Invalid Case 4!");
+}
+catch (ApplicationException e) {
+    Console.WriteLine(e.Message);
+}

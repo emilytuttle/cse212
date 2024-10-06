@@ -1,6 +1,10 @@
 ﻿public static class DisplaySums {
+       
+    
     public static void Run() {
         DisplaySumPairs([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+        
+        
         // Should show something like (order does not matter):
         // 6 4
         // 7 3
@@ -29,5 +33,13 @@
     /// <param name="numbers">array of integers</param>
     private static void DisplaySumPairs(int[] numbers) {
         // TODO Problem 2 - This should print pairs of numbers in the given array
+         for (var i = 0; i < numbers.Length; ++i) {
+            for (var j = 0; j < numbers.Length; ++j) {
+                // Don't want to compare to yourself ... that will always result in a match
+                if (i != j && numbers[i] == numbers[j]);
+                
+            }
+        }
+       
     }
 }
