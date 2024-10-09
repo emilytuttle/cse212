@@ -59,8 +59,8 @@ public class PriorityQueueTests
 
     [TestMethod]
     // Scenario: The Dequeue function shall remove the item with the highest priority and return its value.
-    // Expected Result: i3
-    // Defect(s) Found: High priority is not removed, the highest value is not taken
+    // Expected Result: i2, the value of the item with the highest priority that came first.
+    // Defect(s) Found: Didnt return the first high value, returned the second
     public void TestPriorityQueue_CheckForMultipleHighPriority()
     {
         var myQueue = new PriorityQueue();
