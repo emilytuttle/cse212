@@ -1,6 +1,9 @@
-﻿public class PriorityQueue
+﻿using System; 
+using System.Collections; 
+
+public class PriorityQueue
 {
-    private List<PriorityItem> _queue = new();
+    public List<PriorityItem> _queue = new();
 
     /// <summary>
     /// Add a new value to the queue with an associated priority.  The
@@ -21,17 +24,26 @@
         {
             throw new InvalidOperationException("The queue is empty.");
         }
-
+        
         // Find the index of the item with the highest priority to remove
         var highPriorityIndex = 0;
-        for (int index = 1; index < _queue.Count - 1; index++)
+        var highPriorityNumber = 0;
+        PriorityItem[] arrayVersion = _queue.ToArray();
+        
+        for (int i= 0; i < arrayVersion.Length; i++)
         {
-            if (_queue[index].Priority >= _queue[highPriorityIndex].Priority)
-                highPriorityIndex = index;
+            Console.WriteLine(arrayVersion[i].Value);
+            
+        
+            if (arrayVersion[i].Priority > highPriorityNumber) {
+                highPriorityNumber = arrayVersion[i].Priority;
+                highPriorityIndex = i;
+            }
+            
         }
 
         // Remove and return the item with the highest priority
-        var value = _queue[highPriorityIndex].Value;
+        var value = arrayVersion[highPriorityIndex].Value;
         return value;
     }
 
@@ -39,9 +51,14 @@
     {
         return $"[{string.Join(", ", _queue)}]";
     }
+
+    public PriorityItem[] MakeArray()
+    {
+        return [];
+    }
 }
 
-internal class PriorityItem
+public class PriorityItem
 {
     internal string Value { get; set; }
     internal int Priority { get; set; }
