@@ -1,5 +1,6 @@
 using System.Text.Json;
 
+
 public static class SetsAndMaps
 {
     /// <summary>
@@ -21,8 +22,35 @@ public static class SetsAndMaps
     /// <param name="words">An array of 2-character words (lowercase, no duplicates)</param>
     public static string[] FindPairs(string[] words)
     {
-        // TODO Problem 1 - ADD YOUR CODE HERE
-        return [];
+        // List<string> list = new List<string>();
+        // for (int i = 0; i < words.Length; i++) {
+        //     var reverse = string.Join("", words[i].ToCharArray().Reverse());
+        //     for (int j = 0; j < words.Length; j++) {
+        //         if (words[j] == reverse && reverse[0] != reverse[1] && !list.Contains($"{words[i]} & {words[j]}")) {
+        //             list.Add($"{words[j]} & {words[i]}");
+        //             Console.WriteLine($"{words[j]} & {words[i]}");
+        //         }
+        //     }
+        // } 
+        // string[] myArray = list.ToArray();
+        // return myArray;
+        var uniqueHash = new HashSet<string>();
+        List<string> list = new List<string>();
+        foreach (string pair in words)
+        {
+            var reverse = string.Join("", pair.ToCharArray().Reverse());
+            if (uniqueHash.Contains(reverse) && reverse[0] != reverse[1]) 
+            {
+                list.Add($"{reverse} & {pair}");
+                Console.WriteLine($"{reverse} & {pair}");
+            } else 
+            {
+                uniqueHash.Add(pair);
+            }
+        }
+        
+        string[] myArray = list.ToArray();
+        return myArray;
     }
 
     /// <summary>
@@ -41,8 +69,13 @@ public static class SetsAndMaps
         var degrees = new Dictionary<string, int>();
         foreach (var line in File.ReadLines(filename))
         {
-            var fields = line.Split(",");
-            // TODO Problem 2 - ADD YOUR CODE HERE
+            string[] fields = line.Split(",");
+
+            if (degrees.ContainsKey(fields[3])) {
+                degrees[fields[3]] += 1;
+            } else {
+                degrees.Add(fields[3], 1);
+            }
         }
 
         return degrees;
@@ -66,8 +99,53 @@ public static class SetsAndMaps
     /// </summary>
     public static bool IsAnagram(string word1, string word2)
     {
-        // TODO Problem 3 - ADD YOUR CODE HERE
-        return false;
+        Console.WriteLine("Before");
+        Console.WriteLine(word1);
+        word1 = String.Join("", word1.Split(default(string[]), StringSplitOptions.RemoveEmptyEntries));
+        word2 = String.Join("", word2.Split(default(string[]), StringSplitOptions.RemoveEmptyEntries));
+        var letters1 = new Dictionary<char, int>();
+        var letters2 = new Dictionary<char, int>();
+
+        char [] word1Arr = word1.ToLower().ToCharArray();
+        char [] word2Arr = word2.ToLower().ToCharArray();
+
+        Console.WriteLine("after");
+        Console.WriteLine(word1);
+        if (word1.Length != word2.Length) {
+            return false;
+        }
+        
+        for (int i = 0; i < word1Arr.Length; i++) {
+            bool space = Char.IsWhiteSpace(word1Arr[i]);
+            if (!space) {
+                if (letters1.ContainsKey(word1Arr[i])) {
+                    letters1[word1Arr[i]] += 1;
+                } else {
+                    letters1.Add(word1Arr[i], 1);
+                }
+            }
+            
+        }
+
+        for (int i = 0; i < word2Arr.Length; i++) {
+            bool space = Char.IsLetter(word2Arr[i]);
+            if (space) {
+                if (letters2.ContainsKey(word2Arr[i])) {
+                letters2[word2Arr[i]] += 1;
+                } else {
+                letters2.Add(word2Arr[i], 1);
+            }
+            }
+            
+        }
+        
+
+        bool areEqual = letters1.OrderBy(kv => kv.Key).SequenceEqual(letters2.OrderBy(kv => kv.Key));
+        if (areEqual == true) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /// <summary>
