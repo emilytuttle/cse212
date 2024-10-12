@@ -26,6 +26,7 @@ public class Maze
     }
 
     // TODO Problem 4 - ADD YOUR CODE HERE
+   
     /// <summary>
     /// Check to see if you can move left.  If you can, then move.  If you
     /// can't move, throw an InvalidOperationException with the message "Can't go that way!".
@@ -33,6 +34,13 @@ public class Maze
     public void MoveLeft()
     {
         // FILL IN CODE
+        Console.WriteLine("Left");
+    
+        if (_mazeMap[(_currX,_currY)][0].ToString().ToLower() == "false") {
+            throw new InvalidOperationException("Can't go that way!");
+        } else {
+            _currX -= 1;
+        }
     }
 
     /// <summary>
@@ -42,6 +50,12 @@ public class Maze
     public void MoveRight()
     {
         // FILL IN CODE
+    
+         if (_mazeMap[(_currX,_currY)][1].ToString().ToLower() == "false") {
+            throw new InvalidOperationException("Can't go that way!");
+        } else {
+            _currX += 1;
+        }
     }
 
     /// <summary>
@@ -51,6 +65,14 @@ public class Maze
     public void MoveUp()
     {
         // FILL IN CODE
+        
+         if (_mazeMap[(_currX,_currY)][2].ToString().ToLower() == "false") {
+            throw new InvalidOperationException("Can't go that way!");
+        } else if (_mazeMap[(_currX,_currY)][2].ToString().ToLower() == "true"){
+            _currY -= 1;
+    
+        }
+
     }
 
     /// <summary>
@@ -60,10 +82,19 @@ public class Maze
     public void MoveDown()
     {
         // FILL IN CODE
+        Console.WriteLine("DOWN");
+        Console.WriteLine(_mazeMap[(_currX,_currY)][3]);
+        
+         if (_mazeMap[(_currX,_currY)][3].ToString().ToLower() == "false") {
+            throw new InvalidOperationException("Can't go that way!");
+        } else {
+            _currY += 1;
+        }
     }
 
     public string GetStatus()
     {
+        Console.WriteLine(_mazeMap[(1,1)]);
         return $"Current location (x={_currX}, y={_currY})";
     }
 }
