@@ -81,10 +81,11 @@ public class LinkedList : IEnumerable<int>
             _tail = null;
         }
     
-        else if (_head is not null)
+        else if (_head is not null && _tail is not null)
         {
-           _tail.Prev.Next = null;
-           _tail = _tail.Prev;
+            _tail.Prev!.Next = null;
+            _tail = _tail.Prev;
+
         }
     }
 
@@ -129,7 +130,29 @@ public class LinkedList : IEnumerable<int>
     /// </summary>
     public void Remove(int value)
     {
-        // TODO Problem 3
+        Node? curr = _head;
+        while (curr is not null)
+        {
+            if (curr.Data == value)
+            {
+                if (curr == _head)
+                {
+                    RemoveHead();
+                }
+                else if (curr == _tail) {
+                    RemoveTail();
+                }
+                else
+                {
+                   curr.Next!.Prev = curr.Prev;
+                   curr.Prev!.Next = curr.Next;
+                }
+
+                return;
+            }
+
+            curr = curr.Next; // Go to the next node to search for 'value'
+        }
     }
 
     /// <summary>
@@ -137,7 +160,16 @@ public class LinkedList : IEnumerable<int>
     /// </summary>
     public void Replace(int oldValue, int newValue)
     {
-        // TODO Problem 4
+         Node? curr = _head;
+        while (curr is not null)
+        {
+            if (curr.Data == oldValue)
+            {
+               curr.Data = newValue;
+            }
+
+            curr = curr.Next; // Go to the next node to search for 'value'
+        }
     }
 
     /// <summary>
@@ -168,7 +200,13 @@ public class LinkedList : IEnumerable<int>
     public IEnumerable Reverse()
     {
         // TODO Problem 5
-        yield return 0; // replace this line with the correct yield return statement(s)
+
+        var curr = _tail; // Start at the End since this is a Backward iteration.
+        while (curr is not null)
+        {
+            yield return curr.Data; // Provide (yield) each item to the user
+            curr = curr.Prev; // Go backward in the linked list
+        }
     }
 
     public override string ToString()
