@@ -1,5 +1,21 @@
-public class FeatureCollection
+using System.Text.Json.Serialization;
+
+class FeatureCollection
 {
-    // TODO Problem 5 - ADD YOUR CODE HERE
-    // Create additional classes as necessary
+    public List<Feature> Features { get; set; }
+}
+
+class Feature
+{
+    public Properties Properties { get; set; }
+}
+
+class Properties
+{
+    [JsonPropertyName("mag")]
+    public decimal mag { get; set; }
+
+    [JsonPropertyName("place")]
+    public string place { get; set; }
+
 }
