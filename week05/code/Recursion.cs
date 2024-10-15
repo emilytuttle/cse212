@@ -12,10 +12,13 @@ public static class Recursion
     /// to identify a base case (terminating case).  If the value of
     /// n <= 0, just return 0.   A loop should not be used.
     /// </summary>
-    public static int SumSquaresRecursive(int n)
+    public static double SumSquaresRecursive(int n)
     {
-        // TODO Start Problem 1
-        return 0;
+        if (n <= 0) {
+            return 0;
+        }
+
+    return Math.Pow(n,2) + SumSquaresRecursive(n - 1);
     }
 
     /// <summary>
