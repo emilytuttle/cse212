@@ -40,9 +40,69 @@ public static class Recursion
     /// You can assume that the size specified is always valid (between 1 
     /// and the length of the letters list).
     /// </summary>
+    /// 
+
+    // public static String swap(String a,  
+    //                         int i, int j)  
+    // {  
+    //     char temp;  
+    //     char[] charArray = a.ToCharArray();  
+    //     temp = charArray[i] ;  
+    //     charArray[i] = charArray[j];  
+    //     charArray[j] = temp;  
+    //     string s = new string(charArray);  
+    //     return s;  
+    // } 
     public static void PermutationsChoose(List<string> results, string letters, int size, string word = "")
     {
         // TODO Start Problem 2
+        
+        if (size <= 1) 
+        {
+            for (int i = 0; i < letters.Length; i++) 
+            {
+                results.Add(letters[i].ToString());
+            }
+        }
+        else 
+        {
+            for (var i = 0; i < letters.Length; i++)
+            {
+                var currentLetter = letters[i];
+                string removedLetters = letters.Remove(letters[i]);
+                PermutationsChoose(results, removedLetters, size, word);
+
+                if (word.Length == size) {
+                    results.Add(word);
+                }
+        //         public static String swap(String a,  
+        //                     int i, int j)  
+        //         {  
+        //             char temp;  
+        //             char[] charArray = a.ToCharArray();  
+        //             temp = charArray[i] ;  
+        //             charArray[i] = charArray[j];  
+        //             charArray[j] = temp;  
+        //             string s = new string(charArray);  
+        //             return s;  
+        //         } 
+        //         letters = swap(str, l, i);  
+        //         permute(str, l + 1, r);  
+        //         str = swap(str, l, i); 
+        //         for (int i = l; i <= r; i++)  
+        //     {  
+        //         str = swap(str, l, i);  
+        //         permute(str, l + 1, r);  
+        //         str = swap(str, l, i);  
+        //     }  
+        //     }
+        }
+     
+            foreach (string line in results) 
+            {
+                Console.WriteLine(line);
+            }
+        }
     }
 
     /// <summary>
