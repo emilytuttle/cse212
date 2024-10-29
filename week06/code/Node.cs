@@ -12,8 +12,9 @@ public class Node
     public void Insert(int value)
     {
         // TODO Start Problem 1
+        
 
-        if (value < Data)
+        if (value < Data && value != Data)
         {
             // Insert to the left
             if (Left is null)
@@ -21,7 +22,7 @@ public class Node
             else
                 Left.Insert(value);
         }
-        else
+        else if (value > Data && value != Data)
         {
             // Insert to the right
             if (Right is null)
@@ -29,10 +30,21 @@ public class Node
             else
                 Right.Insert(value);
         }
+    
     }
 
     public bool Contains(int value)
     {
+        // def contains(self, value):
+        // current_node = self
+        // while current_node is not None:
+        //     if value < current_node.value:
+        //         current_node = current_node.left
+        //     elif value > current_node.value:
+        //         current_node = current_node.right
+        //     else:
+        //         return True
+        // return False
         // TODO Start Problem 2
         return false;
     }
